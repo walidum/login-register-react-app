@@ -5,6 +5,7 @@ import Footer from'../components/Footer'
 import DropDown from '../components/DropDown'
 import Navbar from '../components/Navbar'
 import GlobalStyle from '../globalStyles';
+import API from "../api/api";
 const Register = () => {
    const  [email, setEmail] = useState()
    const  [password, setPassword]=useState()
@@ -17,7 +18,18 @@ const Register = () => {
      setIsOpen(!isOpen)
    }
    const send = ()=>{
+       const data ={
+           firstname: nom,
+           lastName: prenom,
+           email: email,
+           password: password
+       }
+      API.post('/register',data).then(res=>{
 
+      })
+          .catch(err=>{
+
+          })
    }
 
     return (
