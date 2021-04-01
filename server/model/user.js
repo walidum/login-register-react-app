@@ -11,6 +11,9 @@ const shema = mongoose.Schema({
     },
     password: {
         type: String,
+    },
+    category: {
+        type: String,
     }
 
 })

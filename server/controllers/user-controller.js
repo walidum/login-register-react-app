@@ -28,6 +28,7 @@ module.exports.AddUser = (req, res) => {
     user.lastname = req.body.lastName
     user.email = req.body.email
     user.password = req.body.password
+    user.category = req.body.category
     user.save()
         .then(r => res.send('OK'))
         .catch(err => res.send('Not OK'))
