@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import'./login.css'
+import'./register.css'
 import {Button, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@material-ui/core'
 import Footer from'../components/Footer'
 import DropDown from '../components/DropDown'
@@ -8,6 +8,8 @@ import GlobalStyle from '../globalStyles';
 const Register = () => {
    const  [email, setEmail] = useState()
    const  [password, setPassword]=useState()
+   const  [nom, setNom]=useState()
+   const  [prenom, setPrenom]=useState()
    const  [loginType, setLoginType] = useState()
    const  [isOpen, setIsOpen] = useState(false)
 
@@ -20,14 +22,28 @@ const Register = () => {
 
     return (
         <>
-        <div className="Login-Nav">
+        <div className="register-Login-Nav">
           <GlobalStyle />
           <Navbar toggle={toggle} />
           <DropDown isOpen={isOpen} toggle={toggle} />
         </div>
-        <div className="Login-Form">
-            <div className="Form">
-                <div className="form-input">
+        <div className="register-Login-Form">
+            <div className="register-Form">
+                <div className="register-form-input">
+                    <TextField
+                        id="outlined-basic"
+                        label="Nom"
+                        variant="outlined"
+                        value={nom}
+                         onChange={(e) =>setNom(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="Prénom"
+                        variant="outlined"
+                        value={prenom}
+                         onChange={(e) =>setPrenom(e.target.value)}
+                    />
                     <TextField
                      id="outlined-basic"
                      label="E-mail"
@@ -45,21 +61,21 @@ const Register = () => {
                      onChange={(e) =>setPassword(e.target.value)}
                      />
                 </div>
-                <div className="select-input">
+                <div className="register-select-input">
                     <FormLabel component="legend">Choose Between</FormLabel>
                     <RadioGroup value={loginType} onChange={(e) => setLoginType(e.target.value)}>
                         <FormControlLabel value="client" control={<Radio/>} label="Client" />
                         <FormControlLabel value="artisan" control={<Radio/>} label="Artisan" />
                     </RadioGroup>
                 </div>
-                <div className="input-Btn">
+                <div className="register-input-Btn">
                     <Button onClick={send} variant="outlined">
                         Login
                     </Button>
                 </div>
             </div>
         </div>
-        <div className="Login-footer">
+        <div className="register-Login-footer">
             <Footer />
         </div>
 
