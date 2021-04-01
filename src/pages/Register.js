@@ -5,7 +5,7 @@ import Footer from'../components/Footer'
 import DropDown from '../components/DropDown'
 import Navbar from '../components/Navbar'
 import GlobalStyle from '../globalStyles';
-const Login = () => {
+const Register = () => {
    const  [email, setEmail] = useState()
    const  [password, setPassword]=useState()
    const  [loginType, setLoginType] = useState()
@@ -14,9 +14,10 @@ const Login = () => {
    const toggle = () => {
      setIsOpen(!isOpen)
    }
-   const send =()=>{
+   const send = ()=>{
 
    }
+
     return (
         <>
         <div className="Login-Nav">
@@ -66,6 +67,6 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Register;
 
 

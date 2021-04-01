@@ -71,13 +71,13 @@ const DataSection = ({heading, paragraphOne,  paragraphTwo, buttonLabel, image, 
                    <h1>{heading}</h1>
                    <p>{paragraphOne}</p>
                    <p>{ paragraphTwo}</p>
-                   <Button to="/homes" primary="true">{buttonLabel}</Button>
+                   <Button to="/home" primary="true">{buttonLabel}</Button>
                 </ColumnLeft>
                 <ColmunRight reverse= {reverse}>
                     <img src={image} alt= 'home' />
                 </ColmunRight>
             </Container>
-            
+
         </Section>
     )
 }
