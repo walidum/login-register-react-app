@@ -85,7 +85,7 @@ const Register = () => {
                     </div>
                     <div className="register-input-Btn">
                         <Button onClick={send} variant="outlined">
-                            Login
+                            Register
                         </Button>
                     </div>
                 </div>
