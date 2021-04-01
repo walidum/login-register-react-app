@@ -1,11 +1,10 @@
 import React from 'react';
 import styled, {css} from 'styled-components/macro';
-import {Link} from 'react-router-dom';
-import { menuData } from '../data/MenuData';
-import { Button } from './Button';
+import {Link, useHistory} from 'react-router-dom';
+import {Button} from './Button';
 import {FaBars} from 'react-icons/fa'
 
-const Nav= styled.nav`
+const Nav = styled.nav`
  height:60px;
  display:flex;
  justify-content: space-between;
@@ -16,7 +15,7 @@ const Nav= styled.nav`
  
 `;
 
-const NavLink= css`
+const NavLink = css`
 color: black;
 display: felx;
 align-items: center;
@@ -26,12 +25,12 @@ cursor: pointer;
 text-decoration:none;
 `
 
-const Logo= styled(Link)`
+const Logo = styled(Link)`
  ${NavLink}
  font-style: italic;
 `;
 
-const MenuBars= styled(FaBars)`
+const MenuBars = styled(FaBars)`
  display: none;
  top: 0;
  right: 0;
@@ -41,7 +40,7 @@ const MenuBars= styled(FaBars)`
  }
 `;
 
-const NavMenu= styled.div`
+const NavMenu = styled.div`
 display: flex;
 align-items: center;
 margin-right: -60px;
@@ -53,13 +52,11 @@ margin-right: -60px;
 `;
 
 
-
-
-const NavMenulinks= styled(Link)`
+const NavMenulinks = styled(Link)`
 ${NavLink}
 `;
 
-const NavBtn= styled.div`
+const NavBtn = styled.div`
 dipslay: felx;
 align-items: center;
 margin-right: 24px;
@@ -70,20 +67,46 @@ margin-right: 24px;
 `;
 
 const Navbar = ({toggle}) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user)
+    const history = useHistory()
+    const navigate = (path) => {
+        history.push(path)
+    }
+    const logout = () => {
+        //navigate('/login')
+    }
     return (
         <Nav>
             <Logo to="/">ASMA</Logo>
-            <MenuBars onClick= {toggle}/>
+            <MenuBars onClick={toggle}/>
             <NavMenu>
-                {menuData.map( (item, index) =>(
-                    <NavMenulinks to={item.link} key={index}>
-                        {item.title}
-                    </NavMenulinks>
-                ))}
+                <NavMenulinks to={'/'}>
+                    Home
+                </NavMenulinks>
+                <NavMenulinks to={'/about'}> About
+                </NavMenulinks>
+                {!user || !user.email && (
+                    <>
+                        <NavMenulinks to={'/register'}> Register
+                        </NavMenulinks>
+                        <NavMenulinks to={'/login'}> Login
+                        </NavMenulinks>
+                    </>
+                )}
+
             </NavMenu>
-            <NavBtn>
-                <Button to='/conatct' primary='true'> Contact Us </Button>
-            </NavBtn>
+            {user && user.email && (
+                <>
+                    <NavBtn>
+                        <h3 style={{color: 'red'}}>{user.firstname} {user.lastname}</h3>
+                    </NavBtn>
+
+                    <NavBtn>
+                        <Button onClick={logout} primary='true'> Logout </Button>
+                    </NavBtn>
+                </>
+            )}
         </Nav>
     )
 }

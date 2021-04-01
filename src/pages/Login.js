@@ -6,6 +6,7 @@ import DropDown from '../components/DropDown'
 import Navbar from '../components/Navbar'
 import GlobalStyle from '../globalStyles';
 import API from "../api/api";
+import {useHistory} from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState()
@@ -16,6 +17,10 @@ const Login = () => {
     const toggle = () => {
         setIsOpen(!isOpen)
     }
+    const history = useHistory()
+    const navigate = (path) => {
+        history.push(path)
+    }
     const send = () => {
         const data = {
             email, password
@@ -23,7 +28,8 @@ const Login = () => {
         API.post('/login', data)
             .then(res => {
                 if (res.data.status) {
-                    alert('LOgin OK')
+                    localStorage.setItem('user', JSON.stringify(res.data.user))
+                    navigate('/home')
                 } else {
                     alert(res.data.msg)
                 }
